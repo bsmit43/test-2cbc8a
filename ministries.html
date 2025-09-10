@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1. 0"> <title>Ministries - Grace Community Church</title> <meta name="description" content="Explore the various ministries at Grace Community Church. From children and youth to missions and outreach, find a place to grow, serve, and connect. "> <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lora:wght@400;500;600&display=swap" rel="stylesheet"> <style>
+        :root {
+            --primary: #3b5173;
+            --primary-dark: #2a3b54;
+            --secondary: #e5b167;
+            --accent: #d4a04f;
+            --light: #f5f5f5;
+            --dark: #333;
+            --text: #555;
+            --white: #fff;
+            --max-width: 1200px;
+            --border-radius: 8px;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Lora', serif;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--accent);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: var(--dark);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--accent);
+            color: var(--dark);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-family: 'Lora', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            font-weight: 500;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background-image: linear-gradient(rgba(59, 81, 115, 0.8), rgba(59, 81, 115, 0.8)), url('https://images.unsplash.com/photo-1501183007986-d0d080b147f9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            text-align: center;
+            padding: 120px 0 80px;
+            margin-top: 76px;
+        }
+        
+        .page-header h1 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .breadcrumbs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+        
+        .breadcrumbs a {
+            color: var(--secondary);
+        }
+        
+        .breadcrumbs span {
+            color: var(--white);
+        }
+        
+        /* Ministry Overview */
+        .ministry-overview {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h2 {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        .ministry-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .ministry-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+        
+        .ministry-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .ministry-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .ministry-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .ministry-card:hover .ministry-image img {
+            transform: scale(1.1);
+        }
+        
+        .ministry-content {
+            padding: 20px;
+        }
+        
+        .ministry-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            background-color: var(--light);
+            border-radius: 50%;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-top: -35px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .ministry-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .ministry-description {
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+        
+        /* Ministry Details */
+        .ministry-details {
+            padding: 80px 0;
+        }
+        
+        .ministry-details-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 10px 20px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text);
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .tab-btn::after {
+            content: '';
+            position: absolute;
+            bottom: -11px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        .tab-btn:hover,
+        .tab-btn.active {
+            color: var(--primary);
+        }
+        
+        .tab-btn.active::after {
+            width: 100%;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .ministry-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+        
+        .ministry-detail:last-child {
+            margin-bottom: 0;
+        }
+        
+        .ministry-detail:nth-child(even) .ministry-detail-image {
+            order: 2;
+        }
+        
+        .ministry-detail-image {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .ministry-detail-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .ministry-detail-content h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .ministry-detail-content ul {
+            list-style-type: none;
+            margin-bottom: 20px;
+        }
+        
+        .ministry-detail-content ul li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+        
+        .ministry-detail-content ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+        
+        /* Ministry Leaders */
+        .ministry-leaders {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .leaders-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        
+        .leader-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        
+        .leader-image {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .leader-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .leader-content {
+            padding: 20px;
+        }
+        
+        .leader-name {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .leader-role {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .leader-bio {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .leader-social {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        /* Get Involved Section */
+        .get-involved {
+            padding: 80px 0;
+        }
+        
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .step-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary);
+            color: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .step-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .step-title {
+            margin-bottom: 15px;
+        }
+        
+        /* Call to Action */
+        .cta {
+            background-image: linear-gradient(rgba(59, 81, 115, 0.8), rgba(59, 81, 115, 0.8)), url('https://images.unsplash.com/photo-1508420223351-d3eea27b023e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 0;
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .cta h2 {
+            color: var(--white);
+            margin-bottom: 25px;
+            font-size: 2.5rem;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .testimonials-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 30px;
+            font-size: 4rem;
+            font-family: Georgia, serif;
+            color: var(--secondary);
+            opacity: 0.2;
+            line-height: 1;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .author-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        
+        .author-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info {
+            text-align: left;
+        }
+        
+        .author-name {
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+        
+        .author-ministry {
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-widget h4 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-widget h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+        
+        .footer-widget p {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .footer-service {
+            margin-bottom: 15px;
+        }
+        
+        .footer-service-day {
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        .subscribe-form {
+            display: flex;
+            margin-top: 15px;
+        }
+        
+        .subscribe-input {
+            flex-grow: 1;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            border: none;
+            padding: 10px 15px;
+        }
+        
+        .subscribe-btn {
+            background-color: var(--secondary);
+            color: var(--dark);
+            font-weight: 600;
+            border: none;
+            padding: 0 15px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .subscribe-btn:hover {
+            background-color: var(--accent);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .ministry-grid,
+            .leaders-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .ministry-detail,
+            .steps-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .ministry-detail:nth-child(even) .ministry-detail-image {
+                order: 1;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 76px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0;
+                text-align: center;
+                border-bottom: 1px solid #eee;
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 15px 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .ministry-grid,
+            .leaders-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body> <header> <div class="container header-container"> <a href="#" class="logo">Grace<span>Community</span></a> <button class="mobile-menu-btn">☰</button> <nav> <ul> <li><a href="index. Html">Home</a></li> <li><a href="about. Html">About</a></li> <li><a href="sermons. Html">Sermons</a></li> <li><a href="events. Html">Events</a></li> <li><a href="ministries. Html">Ministries</a></li> <li><a href="contact. Html">Contact</a></li> </ul> </nav> </div> </header> <section class="page-header"> <div class="container"> <div class="breadcrumbs"> <a href="index. Html">Home</a> <span>/</span> <span>Ministries</span> </div> <h1>Our Ministries</h1> <p>Serving God, growing in faith, and reaching out to others</p> </div> </section> <section class="ministry-overview"> <div class="container"> <div class="section-header"> <h2>Ministry Areas</h2> <p>Find a place to connect, grow, and serve</p> </div> <div class="ministry-grid"> <div class="ministry-card"> <div class="ministry-image"> <img src="https://images.unsplash.com/photo-1471784192070-2138b3d454fc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Worship Ministry"> </div> <div class="ministry-content"> <div class="ministry-icon">♫</div> <h3 class="ministry-title">Worship Ministry</h3> <p class="ministry-description">Using musical gifts to lead the congregation in worship through various musical styles and instruments. </p> <a href="#worship" class="btn btn-outline">Learn More</a> </div> </div> <div class="ministry-card"> <div class="ministry-image"> <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Children's Ministry"> </div> <div class="ministry-content"> <div class="ministry-icon">👶</div> <h3 class="ministry-title">Children's Ministry</h3> <p class="ministry-description">Nurturing the spiritual growth of children through age-appropriate Bible teaching, activities, and worship. </p> <a href="#children" class="btn btn-outline">Learn More</a> </div> </div> <div class="ministry-card"> <div class="ministry-image"> <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Youth Ministry"> </div> <div class="ministry-content"> <div class="ministry-icon">🎒</div> <h3 class="ministry-title">Youth Ministry</h3> <p class="ministry-description">Providing a safe and engaging environment for teens to grow in their faith, build relationships, and develop leadership skills. </p> <a href="#youth" class="btn btn-outline">Learn More</a> </div> </div> <div class="ministry-card"> <div class="ministry-image"> <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Adult Ministry"> </div> <div class="ministry-content"> <div class="ministry-icon">👨‍👩‍👧‍👦</div> <h3 class="ministry-title">Adult Ministry</h3> <p class="ministry-description">Bible studies, small groups, and fellowship opportunities designed to help adults grow in their faith and build community. </p> <a href="#adult" class="btn btn-outline">Learn More</a> </div> </div> <div class="ministry-card"> <div class="ministry-image"> <img src="https://images.unsplash.com/photo-1593113630400-ea4288922497?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Missions Ministry"> </div> <div class="ministry-content"> <div class="ministry-icon">🌎</div> <h3 class="ministry-title">Missions & Outreach</h3> <p class="ministry-description">Sharing God's love locally and globally through service projects, mission trips, and partnership with missionaries. </p> <a href="#missions" class="btn btn-outline">Learn More</a> </div> </div> <div class="ministry-card"> <div class="ministry-image"> <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Prayer Ministry"> </div> <div class="ministry-content"> <div class="ministry-icon">🙏</div> <h3 class="ministry-title">Prayer Ministry</h3> <p class="ministry-description">Dedicated to praying for the church, community, and world. Includes prayer meetings, prayer chains, and intercessory prayer teams. </p> <a href="#prayer" class="btn btn-outline">Learn More</a> </div> </div> </div> </div> </section> <section class="ministry-details"> <div class="container"> <div class="section-header"> <h2>Ministry Details</h2> <p>Learn more about each of our ministries</p> </div> <div class="ministry-details-tabs"> <button class="tab-btn active" data-tab="worship">Worship</button> <button class="tab-btn" data-tab="children">Children</button> <button class="tab-btn" data-tab="youth">Youth</button> <button class="tab-btn" data-tab="adult">Adult</button> <button class="tab-btn" data-tab="missions">Missions</button> <button class="tab-btn" data-tab="prayer">Prayer</button> </div> <div id="worship" class="tab-content active"> <div class="ministry-detail"> <div class="ministry-detail-image"> <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Worship Team"> </div> <div class="ministry-detail-content"> <h3>Worship Ministry</h3> <p>Our worship ministry is dedicated to creating an atmosphere where people can encounter God through music and worship. We believe that worship is a powerful way to express our love and gratitude to God and to prepare our hearts to receive His Word. </p> <p>Our worship teams include vocalists, instrumentalists, sound technicians, and visual arts specialists who work together to facilitate meaningful worship experiences. </p> <h4>Ministry Opportunities:</h4> <ul> <li>Traditional Choir (rehearsals on Thursday evenings)</li> <li>Contemporary Worship Team (rehearsals on Wednesday evenings)</li> <li>Orchestra and Instrumental Ensemble</li> <li>Sound and Lighting Team</li> <li>Visual Media Team</li> </ul> <a href="#" class="btn">Join the Worship Team</a> </div> </div> </div> <div id="children" class="tab-content"> <div class="ministry-detail"> <div class="ministry-detail-image"> <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Children's Ministry"> </div> <div class="ministry-detail-content"> <h3>Children's Ministry</h3> <p>Our children's ministry is committed to partnering with parents to help children develop a strong foundation of faith. We provide a safe, nurturing environment where children can learn about God's love and develop a personal relationship with Jesus Christ. </p> <p>Our age-appropriate programs incorporate Bible teaching, worship, games, crafts, and other activities designed to engage children and help them grow spiritually. </p> <h4>Ministry Programs:</h4> <ul> <li>Nursery (0-2 years) - Available during all services</li> <li>Preschool (3-5 years) - Sunday mornings at 9:00 AM & 11:00 AM</li> <li>Elementary (K-5th grade) - Sunday mornings at 9:00 AM & 11:00 AM</li> <li>Wednesday Night Kids - Bible study and activities at 7:00 PM</li> <li>Vacation Bible School - Annual summer program</li> </ul> <a href="#" class="btn">Volunteer with Children</a> </div> </div> </div> <div id="youth" class="tab-content"> <div class="ministry-detail"> <div class="ministry-detail-image"> <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Youth Ministry"> </div> <div class="ministry-detail-content"> <h3>Youth Ministry</h3> <p>Our youth ministry exists to help students in 6th-12th grade develop a lifelong relationship with Jesus Christ. We create a welcoming community where teens can explore their faith, ask questions, build meaningful friendships, and discover their God-given purpose. </p> <p>Our programs combine biblical teaching, worship, small groups, service opportunities, and fun activities that engage students and encourage spiritual growth. </p> <h4>Ministry Programs:</h4> <ul> <li>Sunday Morning Youth Bible Study - 9:00 AM</li> <li>Wednesday Night Youth Group - 6:00 PM to 8:00 PM</li> <li>Monthly Youth Events and Activities</li> <li>Annual Youth Retreats and Camps</li> <li>Mission Trips and Service Projects</li> <li>Student Leadership Team</li> </ul> <a href="#" class="btn">Join Youth Ministry</a> </div> </div> </div> <div id="adult" class="tab-content"> <div class="ministry-detail"> <div class="ministry-detail-image"> <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Adult Ministry"> </div> <div class="ministry-detail-content"> <h3>Adult Ministry</h3> <p>Our adult ministry focuses on helping adults of all ages grow in their faith through Bible study, community, and service. We offer a variety of opportunities for adults to connect with others, deepen their understanding of Scripture, and apply biblical principles to everyday life. </p> <p>From small groups to Bible classes to special events, our adult ministry provides multiple pathways for spiritual growth and meaningful relationships. </p> <h4>Ministry Opportunities:</h4> <ul> <li>Sunday Morning Bible Classes - 9:00 AM</li> <li>Life Groups - Meeting in homes throughout the week</li> <li>Men's Ministry - Bible studies, breakfast meetings, retreats</li> <li>Women's Ministry - Bible studies, events, retreats</li> <li>Senior Adult Ministry - Activities, fellowship, service</li> <li>Marriage Ministry - Classes and events for couples</li> </ul> <a href="#" class="btn">Find a Small Group</a> </div> </div> </div> <div id="missions" class="tab-content"> <div class="ministry-detail"> <div class="ministry-detail-image"> <img src="https://images.unsplash.com/photo-1471864167891-35a5e547a73f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Missions Ministry"> </div> <div class="ministry-detail-content"> <h3>Missions & Outreach</h3> <p>Our missions and outreach ministry is committed to sharing God's love both locally and globally. We believe that as followers of Christ, we are called to serve others and share the good news of Jesus with people in our community and around the world. </p> <p>Through partnerships with local organizations, support of global missionaries, and direct involvement in service projects and mission trips, we seek to meet physical and spiritual needs while demonstrating God's love in practical ways. </p> <h4>Ministry Opportunities:</h4> <ul> <li>Local Outreach - Food pantry, homeless ministry, crisis response</li> <li>Community Service Projects - Monthly opportunities to serve</li> <li>Mission Trips - Domestic and international opportunities</li> <li>Missionary Support - Prayer, correspondence, financial support</li> <li>Evangelism Training - Learning to share your faith</li> <li>Disaster Relief Team - Responding to community needs</li> </ul> <a href="#" class="btn">Get Involved in Missions</a> </div> </div> </div> <div id="prayer" class="tab-content"> <div class="ministry-detail"> <div class="ministry-detail-image"> <img src="https://images.unsplash.com/photo-1515705576963-95cad62945b6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Prayer Ministry"> </div> <div class="ministry-detail-content"> <h3>Prayer Ministry</h3> <p>Our prayer ministry believes in the power of prayer to transform lives, heal relationships, and bring about spiritual renewal. We are committed to praying for our church, community, and world, knowing that prayer is essential to our relationship with God and His work in our lives. </p> <p>Through various prayer initiatives, we seek to create a culture of prayer within our church and equip people to develop a vibrant prayer life. </p> <h4>Ministry Opportunities:</h4> <ul> <li>Weekly Prayer Meeting - Wednesday, 6:00 AM</li> <li>Sunday Morning Prayer Team - Before and during services</li> <li>Prayer Chain - Responding to urgent prayer needs</li> <li>Intercessory Prayer Team - Dedicated to specific prayer focuses</li> <li>Prayer Walking - Praying throughout our community</li> <li>Prayer Ministry Training - Learning to pray effectively</li> </ul> <a href="#" class="btn">Join the Prayer Team</a> </div> </div> </div> </div> </section> <section class="ministry-leaders"> <div class="container"> <div class="section-header"> <h2>Ministry Leaders</h2> <p>Meet the dedicated individuals who lead our ministries</p> </div> <div class="leaders-grid"> <div class="leader-card"> <div class="leader-image"> <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Robert Thompson"> </div> <div class="leader-content"> <h3 class="leader-name">Robert Thompson</h3> <p class="leader-role">Worship Pastor</p> <p class="leader-bio">With over 15 extensive experience in worship ministry, Robert leads our worship teams with passion and excellence. </p> <div class="leader-social"> <a href="#" class="social-icon">f</a> <a href="#" class="social-icon">t</a> <a href="#" class="social-icon">in</a> </div> </div> </div> <div class="leader-card"> <div class="leader-image"> <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Sarah Johnson"> </div> <div class="leader-content"> <h3 class="leader-name">Sarah Johnson</h3> <p class="leader-role">Children's Director</p> <p class="leader-bio">Sarah's passion for children's spiritual development has shaped our vibrant children's ministry program. </p> <div class="leader-social"> <a href="#" class="social-icon">f</a> <a href="#" class="social-icon">t</a> <a href="#" class="social-icon">in</a> </div> </div> </div> <div class="leader-card"> <div class="leader-image"> <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="Jason Martinez"> </div> <div class="leader-content"> <h3 class="leader-name">Jason Martinez</h3> <p class="leader-role">Youth Pastor</p> <p class="leader-bio">Jason's energy and authentic faith help students navigate their teenage years with a strong foundation in Christ. </p> <div class="leader-social"> <a href="#" class="social-icon">f</a> <a href="#" class="social-icon">t</a> <a href="#" class="social-icon">in</a> </div> </div> </div> <div class="leader-card"> <div class="leader-image"> <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Emily Chen"> </div> <div class="leader-content"> <h3 class="leader-name">Emily Chen</h3> <p class="leader-role">Missions Director</p> <p class="leader-bio">Emily's heart for missions has expanded our global impact and local outreach initiatives. </p> <div class="leader-social"> <a href="#" class="social-icon">f</a> <a href="#" class="social-icon">t</a> <a href="#" class="social-icon">in</a> </div> </div> </div> </div> </div> </section> <section class="get-involved"> <div class="container"> <div class="section-header"> <h2>Get Involved</h2> <p>Simple steps to start serving in a ministry</p> </div> <div class="steps-container"> <div class="step-card"> <div class="step-number">1</div> <div class="step-icon">🔍</div> <h3 class="step-title">Explore Ministries</h3> <p>Browse our ministry opportunities to find areas that align with your gifts, passions, and availability. </p> </div> <div class="step-card"> <div class="step-number">2</div> <div class="step-icon">📝</div> <h3 class="step-title">Fill Out Interest Form</h3> <p>Complete our ministry interest form to let us know which areas you'd like to explore further. </p> </div> <div class="step-card"> <div class="step-number">3</div> <div class="step-icon">🤝</div> <h3 class="step-title">Connect with Leaders</h3> <p>Meet with ministry leaders to discuss opportunities, expectations, and next steps for getting involved. </p> </div> </div> <div class="text-center"> <a href="#" class="btn">Fill Out Ministry Interest Form</a> </div> </div> </section> <section class="testimonials"> <div class="container"> <div class="section-header"> <h2>Ministry Testimonials</h2> <p>Hear from those serving in our ministries</p> </div> <div class="testimonials-slider"> <div class="testimonial-card"> <p class="testimonial-text">Serving in the youth ministry has been one of the most rewarding experiences of my life. Watching students grow in their faith and develop leadership skills gives me so much joy. The connections I've made with both the students and other leaders have enriched my own spiritual journey. </p> <div class="testimonial-author"> <div class="author-image"> <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="David Wilson"> </div> <div class="author-info"> <p class="author-name">David Wilson</p> <p class="author-ministry">Youth Ministry Volunteer</p> </div> </div> </div> </div> </div> </section> <section class="cta"> <div class="container"> <h2>Find Your Place to Serve</h2> <p>God has given each of us unique gifts and abilities to use for His kingdom. Whether you're interested in working with children, leading worship, serving on mission trips, or supporting behind the scenes, there's a place for you to make a difference in our church and community. </p> <div class="cta-buttons"> <a href="#" class="btn btn-secondary">Discover Your Spiritual Gifts</a> <a href="#" class="btn btn-outline">Meet with a Ministry Coach</a> </div> </div> </section> <footer> <div class="container"> <div class="footer-container"> <div class="footer-widget"> <h4>About Us</h4> <p>Grace Community Church is a welcoming community of believers dedicated to worship, fellowship, and service. </p> <p>Our mission is to love God, love people, and make disciples in our community and around the world. </p> </div> <div class="footer-widget"> <h4>Quick Links</h4> <ul class="footer-links"> <li><a href="about. Html">About Us</a></li> <li><a href="sermons. Html">Sermons</a></li> <li><a href="events. Html">Events</a></li> <li><a href="ministries. Html">Ministries</a></li> <li><a href="giving. Html">Online Giving</a></li> <li><a href="contact. Html">Contact Us</a></li> </ul> </div> <div class="footer-widget"> <h4>Service Times</h4> <div class="footer-service"> <p class="footer-service-day">Sunday</p> <p>9:00 AM & 11:00 AM</p> </div> <div class="footer-service"> <p class="footer-service-day">Sunday Evening</p> <p>6:00 PM</p> </div> <div class="footer-service"> <p class="footer-service-day">Wednesday</p> <p>7:00 PM</p> </div> </div> <div class="footer-widget"> <h4>Newsletter</h4> <p>Subscribe to our newsletter to receive updates and announcements. </p> <form class="subscribe-form"> <input type="email" class="subscribe-input" placeholder="Your Email"> <button type="submit" class="subscribe-btn">Subscribe</button> </form> </div> </div> <div class="footer-bottom"> <p>&copy; 2025 Grace Community Church. All Rights Reserved. </p> </div> </div> </footer> <script> // Mobile Menu Toggle const mobileMenuBtn = document. QuerySelector('. Mobile-menu-btn'); const navMenu = document. QuerySelector('nav ul'); mobileMenuBtn. AddEventListener('click', () => { navMenu. ClassList. Toggle('active'); }); // Close mobile menu when clicking outside document. AddEventListener('click', (e) => { if (!e. target. Closest('nav') && !e. target. Closest('. Mobile-menu-btn')) { navMenu. ClassList. Remove('active'); } }); // Tab Navigation const tabBtns = document. QuerySelectorAll('. Tab-btn'); const tabContents = document. QuerySelectorAll('. Tab-content'); tabBtns. ForEach(btn => { btn. AddEventListener('click', () => { const tabId = btn. GetAttribute('data-tab'); // Remove active class from all buttons and contents tabBtns. ForEach(b => b. ClassList. Remove('active')); tabContents. ForEach(c => c. ClassList. Remove('active')); // Add active class to clicked button and corresponding content btn. ClassList. Add('active'); document. GetElementById(tabId). ClassList. Add('active'); }); }); // Handle direct links to tabs document. AddEventListener('DOMContentLoaded', () => { const hash = window. location. hash. Substring(1); if (hash && document. GetElementById(hash)) { const tabBtn = document. QuerySelector(`[data-tab="${hash}"]`); if (tabBtn) { tabBtn. Click(); // Scroll to the tab section const tabsSection = document. QuerySelector('. Ministry-details'); if (tabsSection) { tabsSection. ScrollIntoView({ behavior: 'smooth' }); } } } }); </script> <!-- Universal Form Handler --> <script> window. FORM_HANDLER_CONFIG = { apiEndpoint: 'https://genmysite.com/api/forms/submit', websiteId: null, recaptchaSiteKey: null, debug: false }; </script> <script src="/js/form-handler. Js" defer></script>
+</body>
+</html>

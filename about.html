@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1. 0"> <title>About Us - Grace Community Church</title> <meta name="description" content="Learn about Grace Community Church's history, mission, vision, and values. Discover our leadership team and what we believe. "> <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lora:wght@400;500;600&display=swap" rel="stylesheet"> <style>
+        :root {
+            --primary: #3b5173;
+            --primary-dark: #2a3b54;
+            --secondary: #e5b167;
+            --accent: #d4a04f;
+            --light: #f5f5f5;
+            --dark: #333;
+            --text: #555;
+            --white: #fff;
+            --max-width: 1200px;
+            --border-radius: 8px;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Lora', serif;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--accent);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: var(--dark);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--accent);
+            color: var(--dark);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-family: 'Lora', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            font-weight: 500;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background-image: linear-gradient(rgba(59, 81, 115, 0.8), rgba(59, 81, 115, 0.8)), url('https://images.unsplash.com/photo-1447678523326-1360892abab8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 150px 0 80px;
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        .breadcrumb li {
+            margin: 0 10px;
+        }
+        
+        .breadcrumb a {
+            color: var(--secondary);
+        }
+        
+        .breadcrumb .current {
+            color: var(--white);
+        }
+        
+        /* History Section */
+        .history {
+            padding: 80px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h2 {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        .history-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .history-image {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .history-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .timeline {
+            margin-top: 50px;
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-year {
+            min-width: 100px;
+            font-weight: 700;
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+        
+        .timeline-content {
+            border-left: 2px solid var(--secondary);
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 10px;
+            width: 14px;
+            height: 14px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+        }
+        
+        /* Mission and Values */
+        .mission-values {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .mission-container {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+        
+        .mission-statement {
+            font-size: 1.5rem;
+            font-family: 'Lora', serif;
+            margin-bottom: 20px;
+            color: var(--primary-dark);
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .value-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        /* Beliefs Section */
+        .beliefs {
+            padding: 80px 0;
+        }
+        
+        .beliefs-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .beliefs-content {
+            max-width: 600px;
+        }
+        
+        .beliefs-list {
+            margin-top: 30px;
+        }
+        
+        .belief-item {
+            margin-bottom: 20px;
+        }
+        
+        .belief-title {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .belief-title::before {
+            content: '✓';
+            color: var(--secondary);
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .beliefs-image {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .beliefs-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Leadership Team */
+        .leadership {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .team-member {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+        
+        .member-image {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .team-member:hover .member-image img {
+            transform: scale(1.1);
+        }
+        
+        .member-info {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .member-name {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .member-role {
+            color: var(--secondary);
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        
+        .member-bio {
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+        }
+        
+        .social-link:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        /* Join Us Section */
+        .join-us {
+            padding: 80px 0;
+        }
+        
+        .join-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .join-content {
+            max-width: 600px;
+        }
+        
+        .join-steps {
+            margin-top: 30px;
+        }
+        
+        .step-item {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary);
+            color: var(--dark);
+            font-weight: 700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-content h4 {
+            margin-bottom: 5px;
+        }
+        
+        .join-image {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .join-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Call to Action */
+        .cta {
+            background-image: linear-gradient(rgba(59, 81, 115, 0.8), rgba(59, 81, 115, 0.8)), url('https://images.unsplash.com/photo-1508420223351-d3eea27b023e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 0;
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .cta h2 {
+            color: var(--white);
+            margin-bottom: 25px;
+            font-size: 2.5rem;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-widget h4 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-widget h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+        
+        .footer-widget p {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .footer-service {
+            margin-bottom: 15px;
+        }
+        
+        .footer-service-day {
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        .subscribe-form {
+            display: flex;
+            margin-top: 15px;
+        }
+        
+        .subscribe-input {
+            flex-grow: 1;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            border: none;
+            padding: 10px 15px;
+        }
+        
+        .subscribe-btn {
+            background-color: var(--secondary);
+            color: var(--dark);
+            font-weight: 600;
+            border: none;
+            padding: 0 15px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .subscribe-btn:hover {
+            background-color: var(--accent);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .history-container,
+            .beliefs-container,
+            .join-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 76px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0;
+                text-align: center;
+                border-bottom: 1px solid #eee;
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 15px 0;
+            }
+            
+            .history-image,
+            .beliefs-image,
+            .join-image {
+                margin-bottom: 30px;
+                order: -1;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .values-grid,
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body> <header> <div class="container header-container"> <a href="#" class="logo">Grace<span>Community</span></a> <button class="mobile-menu-btn">☰</button> <nav> <ul> <li><a href="index. Html">Home</a></li> <li><a href="about. Html">About</a></li> <li><a href="sermons. Html">Sermons</a></li> <li><a href="events. Html">Events</a></li> <li><a href="ministries. Html">Ministries</a></li> <li><a href="contact. Html">Contact</a></li> </ul> </nav> </div> </header> <section class="page-header"> <div class="container"> <h1>About Us</h1> <ul class="breadcrumb"> <li><a href="index. Html">Home</a></li> <li class="current">About Us</li> </ul> </div> </section> <section class="history"> <div class="container"> <div class="section-header"> <h2>Our History</h2> <p>Serving our community For years</p> </div> <div class="history-container"> <div class="history-content"> <p>Grace Community Church began in 1985 when a small group of 25 families gathered in a living room with a vision to create a church that would welcome all people and help them grow in their relationship with God. </p> <p>From those humble beginnings, we've grown into a thriving congregation of over 1, 000 members, but our mission remains the same: to create a community where everyone can experience God's love and grace. </p> <p>Throughout our history, we've remained committed to Biblical teaching, authentic worship, and compassionate service to our community and world. We're grateful for God's faithfulness and excited about what He has in store for our future. </p> </div> <div class="history-image"> <img src="https://images.unsplash.com/photo-1557683311-eac922347aa1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Church building"> </div> </div> <div class="timeline"> <div class="timeline-item"> <div class="timeline-year">1985</div> <div class="timeline-content"> <h3>The Beginning</h3> <p>Grace Community Church is founded by Pastor John Reynolds and 25 families meeting in homes. </p> </div> </div> <div class="timeline-item"> <div class="timeline-year">1990</div> <div class="timeline-content"> <h3>First Building</h3> <p>The church purchases its first building, a small chapel on Main Street. </p> </div> </div> <div class="timeline-item"> <div class="timeline-year">2000</div> <div class="timeline-content"> <h3>Growth and Expansion</h3> <p>The congregation grows to 500 members, and we break ground on our current campus. </p> </div> </div> <div class="timeline-item"> <div class="timeline-year">2010</div> <div class="timeline-content"> <h3>Community Outreach</h3> <p>Launch of our food pantry, counseling center, and global missions program. </p> </div> </div> <div class="timeline-item"> <div class="timeline-year">Today</div> <div class="timeline-content"> <h3>Continuing the Mission</h3> <p>Over 1, 000 members, multiple services, and a thriving online ministry reaching people around the world. </p> </div> </div> </div> </div> </section> <section class="mission-values"> <div class="container"> <div class="section-header"> <h2>Our Mission & Values</h2> <p>Guiding principles that shape our ministry</p> </div> <div class="mission-container"> <h3>Our Mission</h3> <p class="mission-statement">"To love God, love people, and make disciples who transform communities with the gospel of Jesus Christ. "</p> <p>This mission drives everything we do at Grace Community Church. It's our purpose and passion to help people know God, find community, and make a difference in the world. </p> </div> <h3 class="text-center">Our Core Values</h3> <div class="values-grid"> <div class="value-card"> <div class="value-icon">📖</div> <h3>Biblical Truth</h3> <p>We are committed to teaching and living according to God's Word, which is our ultimate authority for faith and practice. </p> </div> <div class="value-card"> <div class="value-icon">🙏</div> <h3>Authentic Worship</h3> <p>We seek to honor God through genuine, heartfelt worship that engages our whole being and draws us closer to Him. </p> </div> <div class="value-card"> <div class="value-icon">❤️</div> <h3>Loving Community</h3> <p>We value relationships where people are known, loved, and cared for as we journey together in faith. </p> </div> <div class="value-card"> <div class="value-icon">🌱</div> <h3>Spiritual Growth</h3> <p>We are committed to helping everyone grow in their relationship with Christ through discipleship and spiritual formation. </p> </div> <div class="value-card"> <div class="value-icon">🤝</div> <h3>Compassionate Service</h3> <p>We demonstrate God's love by serving others and meeting practical needs in our community and world. </p> </div> <div class="value-card"> <div class="value-icon">🌍</div> <h3>Global Mission</h3> <p>We are passionate about sharing the gospel and making disciples locally and around the world. </p> </div> </div> </div> </section> <section class="beliefs"> <div class="container"> <div class="section-header"> <h2>What We Believe</h2> <p>Our foundational beliefs based on Scripture</p> </div> <div class="beliefs-container"> <div class="beliefs-content"> <p>At Grace Community Church, our beliefs are rooted in the historic Christian faith as revealed in the Bible. We affirm the essential doctrines that have united Christians throughout the centuries. </p> <div class="beliefs-list"> <div class="belief-item"> <h4 class="belief-title">The Bible</h4> <p>We believe the Bible is God's Word, divinely inspired, without error, and our ultimate authority for faith and life. </p> </div> <div class="belief-item"> <h4 class="belief-title">God</h4> <p>We believe in one God who exists eternally in three persons: Father, Son, and Holy Spirit. </p> </div> <div class="belief-item"> <h4 class="belief-title">Jesus Christ</h4> <p>We believe Jesus is fully God and fully man, born of a virgin, lived a sinless life, died for our sins, rose from the dead, and will return again. </p> </div> <div class="belief-item"> <h4 class="belief-title">Salvation</h4> <p>We believe salvation is by grace alone, through faith alone, in Christ alone, and not by human works or merit. </p> </div> <div class="belief-item"> <h4 class="belief-title">The Holy Spirit</h4> <p>We believe the Holy Spirit dwells in believers, empowering them for godly living and service. </p> </div> <div class="belief-item"> <h4 class="belief-title">The Church</h4> <p>We believe the church is the body of Christ, called to worship God, make disciples, and serve the world. </p> </div> </div> <a href="#" class="btn btn-outline">Read Our Full Statement of Faith</a> </div> <div class="beliefs-image"> <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Church sanctuary"> </div> </div> </div> </section> <section class="leadership"> <div class="container"> <div class="section-header"> <h2>Our Leadership Team</h2> <p>Serving and guiding our church community</p> </div> <div class="team-grid"> <div class="team-member"> <div class="member-image"> <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Pastor David Wilson"> </div> <div class="member-info"> <h3 class="member-name">Pastor David Wilson</h3> <p class="member-role">Senior Pastor</p> <p class="member-bio">Pastor David has been leading our church for over 15 years with wisdom, compassion, and vision. </p> <div class="social-links"> <a href="#" class="social-link">f</a> <a href="#" class="social-link">t</a> </div> </div> </div> <div class="team-member"> <div class="member-image"> <img src="https://randomuser.me/api/portraits/women/64.jpg" alt="Sarah Thompson"> </div> <div class="member-info"> <h3 class="member-name">Sarah Thompson</h3> <p class="member-role">Worship Pastor</p> <p class="member-bio">Sarah leads our worship ministry with passion and creativity, helping us connect with God. </p> <div class="social-links"> <a href="#" class="social-link">f</a> <a href="#" class="social-link">t</a> </div> </div> </div> <div class="team-member"> <div class="member-image"> <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Mike Johnson"> </div> <div class="member-info"> <h3 class="member-name">Mike Johnson</h3> <p class="member-role">Youth Pastor</p> <p class="member-bio">Mike has a heart for helping young people grow in their faith and develop as leaders. </p> <div class="social-links"> <a href="#" class="social-link">f</a> <a href="#" class="social-link">t</a> </div> </div> </div> <div class="team-member"> <div class="member-image"> <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Lisa Chen"> </div> <div class="member-info"> <h3 class="member-name">Lisa Chen</h3> <p class="member-role">Children's Director</p> <p class="member-bio">Lisa creates a fun, safe environment where children can learn about God's love. </p> <div class="social-links"> <a href="#" class="social-link">f</a> <a href="#" class="social-link">t</a> </div> </div> </div> </div> </div> </section> <section class="join-us"> <div class="container"> <div class="section-header"> <h2>Join Our Church Family</h2> <p>How to become a part of Grace Community</p> </div> <div class="join-container"> <div class="join-content"> <p>We believe that being part of a church family is essential for spiritual growth. At Grace Community, we want to make it easy for you to get connected and find your place. </p> <p>Here are some simple steps to help you become part of our church family:</p> <div class="join-steps"> <div class="step-item"> <div class="step-number">1</div> <div class="step-content"> <h4>Attend a Sunday Service</h4> <p>Experience our worship and teaching firsthand. We have services at 9:00 AM and 11:00 AM every Sunday. </p> </div> </div> <div class="step-item"> <div class="step-number">2</div> <div class="step-content"> <h4>Attend a Welcome Lunch</h4> <p>Join us on the first Sunday of each month after the 11:00 AM service to meet our staff and learn more about our church. </p> </div> </div> <div class="step-item"> <div class="step-number">3</div> <div class="step-content"> <h4>Join a Small Group</h4> <p>Connect with others in a smaller setting where you can build relationships and grow spiritually. </p> </div> </div> <div class="step-item"> <div class="step-number">4</div> <div class="step-content"> <h4>Attend Membership Class</h4> <p>Learn about our beliefs, values, and vision, and discover how you can be a part of our mission. </p> </div> </div> </div> <a href="#" class="btn">Plan Your Visit</a> </div> <div class="join-image"> <img src="https://images.unsplash.com/photo-1470076892663-af684e5e15af?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Church community"> </div> </div> </div> </section> <section class="cta"> <div class="container"> <h2>Come Worship With Us</h2> <p>We would love to have you join us for worship this Sunday. Our doors are open to everyone seeking to know God better and experience His love in community. </p> <div class="cta-buttons"> <a href="#" class="btn btn-secondary">Plan Your Visit</a> <a href="#" class="btn btn-outline">Contact Us</a> </div> </div> </section> <footer> <div class="container"> <div class="footer-container"> <div class="footer-widget"> <h4>About Us</h4> <p>Grace Community Church is a welcoming community of believers dedicated to worship, fellowship, and service. </p> <p>Our mission is to love God, love people, and make disciples in our community and around the world. </p> </div> <div class="footer-widget"> <h4>Quick Links</h4> <ul class="footer-links"> <li><a href="about. Html">About Us</a></li> <li><a href="sermons. Html">Sermons</a></li> <li><a href="events. Html">Events</a></li> <li><a href="ministries. Html">Ministries</a></li> <li><a href="giving. Html">Online Giving</a></li> <li><a href="contact. Html">Contact Us</a></li> </ul> </div> <div class="footer-widget"> <h4>Service Times</h4> <div class="footer-service"> <p class="footer-service-day">Sunday</p> <p>9:00 AM & 11:00 AM</p> </div> <div class="footer-service"> <p class="footer-service-day">Sunday Evening</p> <p>6:00 PM</p> </div> <div class="footer-service"> <p class="footer-service-day">Wednesday</p> <p>7:00 PM</p> </div> </div> <div class="footer-widget"> <h4>Newsletter</h4> <p>Subscribe to our newsletter to receive updates and announcements. </p> <form class="subscribe-form"> <input type="email" class="subscribe-input" placeholder="Your Email"> <button type="submit" class="subscribe-btn">Subscribe</button> </form> </div> </div> <div class="footer-bottom"> <p>&copy; 2025 Grace Community Church. All Rights Reserved. </p> </div> </div> </footer> <script> // Mobile Menu Toggle const mobileMenuBtn = document. QuerySelector('. Mobile-menu-btn'); const navMenu = document. QuerySelector('nav ul'); mobileMenuBtn. AddEventListener('click', () => { navMenu. ClassList. Toggle('active'); }); // Close mobile menu when clicking outside document. AddEventListener('click', (e) => { if (!e. target. Closest('nav') && !e. target. Closest('. Mobile-menu-btn')) { navMenu. ClassList. Remove('active'); } }); </script> <!-- Universal Form Handler --> <script> window. FORM_HANDLER_CONFIG = { apiEndpoint: 'https://genmysite.com/api/forms/submit', websiteId: null, recaptchaSiteKey: null, debug: false }; </script> <script src="/js/form-handler. Js" defer></script>
+</body>
+</html>

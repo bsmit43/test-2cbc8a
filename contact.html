@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1. 0"> <title>Contact Us - Grace Community Church</title> <meta name="description" content="Get in touch with Grace Community Church. Find our location, service times, contact information, and online contact form. "> <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lora:wght@400;500;600&display=swap" rel="stylesheet"> <style>
+        :root {
+            --primary: #3b5173;
+            --primary-dark: #2a3b54;
+            --secondary: #e5b167;
+            --accent: #d4a04f;
+            --light: #f5f5f5;
+            --dark: #333;
+            --text: #555;
+            --white: #fff;
+            --max-width: 1200px;
+            --border-radius: 8px;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Lora', serif;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--accent);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: var(--dark);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--accent);
+            color: var(--dark);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-family: 'Lora', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            font-weight: 500;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background-image: linear-gradient(rgba(59, 81, 115, 0.8), rgba(59, 81, 115, 0.8)), url('https://images.unsplash.com/photo-1565035010268-a3816f98589a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            text-align: center;
+            padding: 120px 0 80px;
+            margin-top: 76px;
+        }
+        
+        .page-header h1 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .breadcrumbs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+        
+        .breadcrumbs a {
+            color: var(--secondary);
+        }
+        
+        .breadcrumbs span {
+            color: var(--white);
+        }
+        
+        /* Contact Info Section */
+        .contact-info-section {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h2 {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        .contact-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .contact-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .contact-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .contact-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+        
+        /* Contact Form Section */
+        .contact-form-section {
+            padding: 80px 0;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .form-container {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--primary-dark);
+        }
+        
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            color: var(--text);
+            transition: border-color 0.3s ease;
+        }
+        
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .checkbox-item input {
+            width: auto;
+        }
+        
+        .contact-info-side h3 {
+            color: var(--primary);
+            margin-bottom: 25px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .contact-item-icon {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+        
+        .contact-item-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .service-times {
+            margin-top: 40px;
+        }
+        
+        .service-time {
+            margin-bottom: 15px;
+        }
+        
+        .service-day {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        /* Map Section */
+        .map-section {
+            padding: 0 0 80px;
+        }
+        
+        .map-container {
+            height: 450px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Staff Section */
+        .staff-section {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        
+        .staff-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        
+        .staff-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .staff-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .staff-content {
+            padding: 20px;
+        }
+        
+        .staff-name {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .staff-role {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .staff-contact {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .staff-contact a {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            padding: 80px 0;
+        }
+        
+        .accordion {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .accordion-item {
+            margin-bottom: 15px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .accordion-header {
+            background-color: var(--white);
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+        
+        .accordion-header:hover {
+            background-color: rgba(59, 81, 115, 0.05);
+        }
+        
+        .accordion-header h3 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+        
+        .accordion-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+        
+        .accordion-content {
+            background-color: var(--white);
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .accordion-item.active .accordion-content {
+            padding: 20px;
+            max-height: 500px;
+        }
+        
+        /* Call to Action */
+        .cta {
+            background-image: linear-gradient(rgba(59, 81, 115, 0.8), rgba(59, 81, 115, 0.8)), url('https://images.unsplash.com/photo-1508420223351-d3eea27b023e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 0;
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .cta h2 {
+            color: var(--white);
+            margin-bottom: 25px;
+            font-size: 2.5rem;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-widget h4 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-widget h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+        
+        .footer-widget p {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .footer-service {
+            margin-bottom: 15px;
+        }
+        
+        .footer-service-day {
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        .subscribe-form {
+            display: flex;
+            margin-top: 15px;
+        }
+        
+        .subscribe-input {
+            flex-grow: 1;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            border: none;
+            padding: 10px 15px;
+        }
+        
+        .subscribe-btn {
+            background-color: var(--secondary);
+            color: var(--dark);
+            font-weight: 600;
+            border: none;
+            padding: 0 15px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .subscribe-btn:hover {
+            background-color: var(--accent);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .contact-cards,
+            .staff-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info-side {
+                order: -1;
+                margin-bottom: 40px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 76px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0;
+                text-align: center;
+                border-bottom: 1px solid #eee;
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 15px 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .contact-cards,
+            .staff-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body> <header> <div class="container header-container"> <a href="#" class="logo">Grace<span>Community</span></a> <button class="mobile-menu-btn">☰</button> <nav> <ul> <li><a href="index. Html">Home</a></li> <li><a href="about. Html">About</a></li> <li><a href="sermons. Html">Sermons</a></li> <li><a href="events. Html">Events</a></li> <li><a href="ministries. Html">Ministries</a></li> <li><a href="contact. Html">Contact</a></li> </ul> </nav> </div> </header> <section class="page-header"> <div class="container"> <div class="breadcrumbs"> <a href="index. Html">Home</a> <span>/</span> <span>Contact</span> </div> <h1>Contact Us</h1> <p>We'd love to hear from you and answer any questions you may have</p> </div> </section> <section class="contact-info-section"> <div class="container"> <div class="section-header"> <h2>Get In Touch</h2> <p>Here's how you can reach us</p> </div> <div class="contact-cards"> <div class="contact-card"> <div class="contact-icon">📍</div> <h3 class="contact-title">Our Location</h3> <p>123 Faith Avenue<br>Grace City, GC 12345</p> <a href="#map" class="btn btn-outline">View Map</a> </div> <div class="contact-card"> <div class="contact-icon">📞</div> <h3 class="contact-title">Phone & Email</h3> <p>Phone: (123) 456-7890<br>Email: info@gracecommunity. Org</p> <a href="mailto:info@gracecommunity. Org" class="btn btn-outline">Email Us</a> </div> <div class="contact-card"> <div class="contact-icon">🕒</div> <h3 class="contact-title">Office Hours</h3> <p>Monday - Friday<br>9:00 AM - 5:00 PM</p> <a href="#service-times" class="btn btn-outline">Service Times</a> </div> </div> </div> </section> <section class="contact-form-section"> <div class="container"> <div class="section-header"> <h2>Send Us a Message</h2> <p>We'll get back to you as soon as possible</p> </div> <div class="contact-container"> <div class="form-container"> <form id="contact-form"> <div class="form-group"> <label for="name">Your Name*</label> <input type="text" id="name" name="name" required> </div> <div class="form-group"> <label for="email">Your Email*</label> <input type="email" id="email" name="email" required> </div> <div class="form-group"> <label for="phone">Phone Number</label> <input type="tel" id="phone" name="phone"> </div> <div class="form-group"> <label for="subject">Subject*</label> <input type="text" id="subject" name="subject" required> </div> <div class="form-group"> <label>I'm interested in:</label> <div class="checkbox-group"> <div class="checkbox-item"> <input type="checkbox" id="worship" name="interest" value="Worship"> <label for="worship">Worship</label> </div> <div class="checkbox-item"> <input type="checkbox" id="children" name="interest" value="Children"> <label for="children">Children</label> </div> <div class="checkbox-item"> <input type="checkbox" id="youth" name="interest" value="Youth"> <label for="youth">Youth</label> </div> <div class="checkbox-item"> <input type="checkbox" id="adult" name="interest" value="Adult"> <label for="adult">Adult</label> </div> <div class="checkbox-item"> <input type="checkbox" id="missions" name="interest" value="Missions"> <label for="missions">Missions</label> </div> <div class="checkbox-item"> <input type="checkbox" id="other" name="interest" value="Other"> <label for="other">Other</label> </div> </div> </div> <div class="form-group"> <label for="message">Your Message*</label> <textarea id="message" name="message" required></textarea> </div> <button type="submit" class="btn">Send Message</button> </form> </div> <div class="contact-info-side"> <h3>Contact Information</h3> <div class="contact-item"> <div class="contact-item-icon">📍</div> <div class="contact-item-content"> <h4>Address</h4> <p>123 Faith Avenue<br>Grace City, GC 12345</p> </div> </div> <div class="contact-item"> <div class="contact-item-icon">📞</div> <div class="contact-item-content"> <h4>Phone</h4> <p>(123) 456-7890</p> </div> </div> <div class="contact-item"> <div class="contact-item-icon">✉️</div> <div class="contact-item-content"> <h4>Email</h4> <p>info@gracecommunity. Org</p> </div> </div> <div class="contact-item"> <div class="contact-item-icon">🕒</div> <div class="contact-item-content"> <h4>Office Hours</h4> <p>Monday - Friday: 9:00 AM - 5:00 PM</p> </div> </div> <div id="service-times" class="service-times"> <h3>Service Times</h3> <div class="service-time"> <p class="service-day">Sunday Morning</p> <p>9:00 AM & 11:00 AM</p> </div> <div class="service-time"> <p class="service-day">Sunday Evening</p> <p>6:00 PM</p> </div> <div class="service-time"> <p class="service-day">Wednesday Evening</p> <p>7:00 PM</p> </div> </div> <h3>Connect With Us</h3> <div class="social-links"> <a href="#" class="social-link">f</a> <a href="#" class="social-link">t</a> <a href="#" class="social-link">in</a> <a href="#" class="social-link">yt</a> </div> </div> </div> </div> </section> <section id="map" class="map-section"> <div class="container"> <div class="section-header"> <h2>Find Us</h2> <p>Directions to our church</p> </div> <div class="map-container"> <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215747493078!2d-73.98784492429542!3d40.758985834869584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes+Square!5e0!3m2!1sen!2sus!4v1561344282132!5m2!1sen!2sus" allowfullscreen></iframe> </div> </div> </section> <section class="staff-section"> <div class="container"> <div class="section-header"> <h2>Church Staff</h2> <p>Meet our dedicated team</p> </div> <div class="staff-grid"> <div class="staff-card"> <div class="staff-image"> <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Pastor John Williams"> </div> <div class="staff-content"> <h3 class="staff-name">John Williams</h3> <p class="staff-role">Senior Pastor</p> <div class="staff-contact"> <a href="mailto:john@gracecommunity. Org"> <span>✉️</span> <span>Email</span> </a> <a href="tel:+11234567890"> <span>📞</span> <span>Call</span> </a> </div> </div> </div> <div class="staff-card"> <div class="staff-image"> <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Sarah Johnson"> </div> <div class="staff-content"> <h3 class="staff-name">Sarah Johnson</h3> <p class="staff-role">Children's Director</p> <div class="staff-contact"> <a href="mailto:sarah@gracecommunity. Org"> <span>✉️</span> <span>Email</span> </a> <a href="tel:+11234567891"> <span>📞</span> <span>Call</span> </a> </div> </div> </div> <div class="staff-card"> <div class="staff-image"> <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="Jason Martinez"> </div> <div class="staff-content"> <h3 class="staff-name">Jason Martinez</h3> <p class="staff-role">Youth Pastor</p> <div class="staff-contact"> <a href="mailto:jason@gracecommunity. Org"> <span>✉️</span> <span>Email</span> </a> <a href="tel:+11234567892"> <span>📞</span> <span>Call</span> </a> </div> </div> </div> <div class="staff-card"> <div class="staff-image"> <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Emily Chen"> </div> <div class="staff-content"> <h3 class="staff-name">Emily Chen</h3> <p class="staff-role">Church Administrator</p> <div class="staff-contact"> <a href="mailto:emily@gracecommunity. Org"> <span>✉️</span> <span>Email</span> </a> <a href="tel:+11234567893"> <span>📞</span> <span>Call</span> </a> </div> </div> </div> </div> </div> </section> <section class="faq-section"> <div class="container"> <div class="section-header"> <h2>Frequently Asked Questions</h2> <p>Find answers to common questions</p> </div> <div class="accordion"> <div class="accordion-item"> <div class="accordion-header"> <h3>What time are your Sunday services?</h3> <div class="accordion-icon">▼</div> </div> <div class="accordion-content"> <p>We have Sunday morning services at 9:00 AM and 11:00 AM, with an evening service at 6:00 PM. Our morning services feature a blend of traditional and contemporary worship, while the evening service has a more casual, contemporary feel. </p> </div> </div> <div class="accordion-item"> <div class="accordion-header"> <h3>Is there childcare available during services?</h3> <div class="accordion-icon">▼</div> </div> <div class="accordion-content"> <p>Yes, we provide childcare for infants and toddlers (0-2 years) during all of our services. We also have age-appropriate children's programs for preschool (3-5 years) and elementary (K-5th grade) during our Sunday morning services. </p> </div> </div> <div class="accordion-item"> <div class="accordion-header"> <h3>How do I become a member of the church?</h3> <div class="accordion-icon">▼</div> </div> <div class="accordion-content"> <p>We offer a membership class called "Discover Grace" on the first Sunday of each month after the 11:00 AM service. This class covers our church's history, beliefs, mission, and the benefits and responsibilities of membership. After completing the class, you can schedule a meeting with one of our pastors to discuss membership further. </p> </div> </div> <div class="accordion-item"> <div class="accordion-header"> <h3>How can I get involved in a ministry?</h3> <div class="accordion-icon">▼</div> </div> <div class="accordion-content"> <p>We have many opportunities to serve in various ministries! You can fill out a Ministry Interest Form on our website, pick one up at the Welcome Center on Sundays, or contact the church office. Someone from our staff will follow up with you to discuss your interests, gifts, and the available opportunities. </p> </div> </div> <div class="accordion-item"> <div class="accordion-header"> <h3>What should I wear to church?</h3> <div class="accordion-icon">▼</div> </div> <div class="accordion-content"> <p>We don't have a dress code at Grace Community Church. Some people dress casually in jeans and t-shirts, while others prefer to dress more formally. We invite you to come as you are and dress in a way that is comfortable for you. </p> </div> </div> </div> </div> </section> <section class="cta"> <div class="container"> <h2>We'd Love to Meet You</h2> <p>Whether you're exploring faith, looking for a church home, or interested in serving, we invite you to join us for a Sunday service or contact us with any questions. Our doors are open to everyone!</p> <div class="cta-buttons"> <a href="#" class="btn btn-secondary">Plan Your Visit</a> <a href="#" class="btn btn-outline">View Service Times</a> </div> </div> </section> <footer> <div class="container"> <div class="footer-container"> <div class="footer-widget"> <h4>About Us</h4> <p>Grace Community Church is a welcoming community of believers dedicated to worship, fellowship, and service. </p> <p>Our mission is to love God, love people, and make disciples in our community and around the world. </p> </div> <div class="footer-widget"> <h4>Quick Links</h4> <ul class="footer-links"> <li><a href="about. Html">About Us</a></li> <li><a href="sermons. Html">Sermons</a></li> <li><a href="events. Html">Events</a></li> <li><a href="ministries. Html">Ministries</a></li> <li><a href="giving. Html">Online Giving</a></li> <li><a href="contact. Html">Contact Us</a></li> </ul> </div> <div class="footer-widget"> <h4>Service Times</h4> <div class="footer-service"> <p class="footer-service-day">Sunday</p> <p>9:00 AM & 11:00 AM</p> </div> <div class="footer-service"> <p class="footer-service-day">Sunday Evening</p> <p>6:00 PM</p> </div> <div class="footer-service"> <p class="footer-service-day">Wednesday</p> <p>7:00 PM</p> </div> </div> <div class="footer-widget"> <h4>Newsletter</h4> <p>Subscribe to our newsletter to receive updates and announcements. </p> <form class="subscribe-form"> <input type="email" class="subscribe-input" placeholder="Your Email"> <button type="submit" class="subscribe-btn">Subscribe</button> </form> </div> </div> <div class="footer-bottom"> <p>&copy; 2025 Grace Community Church. All Rights Reserved. </p> </div> </div> </footer> <script> // Mobile Menu Toggle const mobileMenuBtn = document. QuerySelector('. Mobile-menu-btn'); const navMenu = document. QuerySelector('nav ul'); mobileMenuBtn. AddEventListener('click', () => { navMenu. ClassList. Toggle('active'); }); // Close mobile menu when clicking outside document. AddEventListener('click', (e) => { if (!e. target. Closest('nav') && !e. target. Closest('. Mobile-menu-btn')) { navMenu. ClassList. Remove('active'); } }); // Accordion functionality const accordionItems = document. QuerySelectorAll('. Accordion-item'); accordionItems. ForEach(item => { const header = item. QuerySelector('. Accordion-header'); header. AddEventListener('click', () => { // Close all other items accordionItems. ForEach(otherItem => { if (otherItem !== item) { otherItem. ClassList. Remove('active'); } }); // Toggle current item item. ClassList. Toggle('active'); }); }); // Form submission const contactForm = document. GetElementById('contact-form'); contactForm. AddEventListener('submit', (e) => { e. PreventDefault(); // Here you would typically have code to handle the form submission // For this example, we'll just show an alert alert('Thank you for your message! We will get back to you soon. '); contactForm. Reset(); }); </script> <!-- Universal Form Handler --> <script> window. FORM_HANDLER_CONFIG = { apiEndpoint: 'https://genmysite.com/api/forms/submit', websiteId: null, recaptchaSiteKey: null, debug: false }; </script> <script src="/js/form-handler. Js" defer></script>
+</body>
+</html>

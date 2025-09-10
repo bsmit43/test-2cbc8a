@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1. 0"> <title>Sermons - Grace Community Church</title> <meta name="description" content="Listen to recent sermons and messages from Grace Community Church. Grow in your faith through Biblical teaching and spiritual insights. "> <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lora:wght@400;500;600&display=swap" rel="stylesheet"> <style>
+        :root {
+            --primary: #3b5173;
+            --primary-dark: #2a3b54;
+            --secondary: #e5b167;
+            --accent: #d4a04f;
+            --light: #f5f5f5;
+            --dark: #333;
+            --text: #555;
+            --white: #fff;
+            --max-width: 1200px;
+            --border-radius: 8px;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Lora', serif;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--accent);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: var(--dark);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--accent);
+            color: var(--dark);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-family: 'Lora', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            font-weight: 500;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background-image: linear-gradient(rgba(59, 81, 115, 0.8), rgba(59, 81, 115, 0.8)), url('https://images.unsplash.com/photo-1507036066871-b7e8032b3dea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 150px 0 80px;
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        .breadcrumb li {
+            margin: 0 10px;
+        }
+        
+        .breadcrumb a {
+            color: var(--secondary);
+        }
+        
+        .breadcrumb .current {
+            color: var(--white);
+        }
+        
+        /* Sermons Section */
+        .sermons-intro {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h2 {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        .sermons-intro-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .sermons-intro-content {
+            max-width: 600px;
+        }
+        
+        .sermons-intro-image {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .sermons-intro-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Sermons List */
+        .sermons-list {
+            padding: 80px 0;
+        }
+        
+        .filter-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .filter-options {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .filter-select {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+        }
+        
+        .search-form {
+            display: flex;
+        }
+        
+        .search-input {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            min-width: 250px;
+        }
+        
+        .search-btn {
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0 15px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            cursor: pointer;
+        }
+        
+        .sermons-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .sermon-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .sermon-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .sermon-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .sermon-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .sermon-card:hover .sermon-image img {
+            transform: scale(1.1);
+        }
+        
+        .sermon-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background-color: rgba(59, 81, 115, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .sermon-play:hover {
+            background-color: var(--primary);
+        }
+        
+        .sermon-content {
+            padding: 20px;
+        }
+        
+        .sermon-date {
+            color: var(--text);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .sermon-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .sermon-speaker {
+            color: var(--secondary);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        
+        .sermon-description {
+            margin-bottom: 15px;
+        }
+        
+        .sermon-meta {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        
+        .sermon-duration,
+        .sermon-series {
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+        
+        .sermon-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .sermon-action {
+            color: var(--primary);
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .sermon-action:hover {
+            color: var(--secondary);
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 50px;
+        }
+        
+        .page-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--white);
+            color: var(--primary);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .page-link:hover,
+        .page-link.active {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        /* Featured Series */
+        .featured-series {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .series-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        
+        .series-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .series-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .series-image {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .series-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .series-card:hover .series-image img {
+            transform: scale(1.1);
+        }
+        
+        .series-content {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .series-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .series-meta {
+            color: var(--text);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Subscribe Section */
+        .subscribe {
+            padding: 80px 0;
+        }
+        
+        .subscribe-container {
+            background-color: var(--primary);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .subscribe-container h2 {
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+        
+        .subscribe-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .subscribe-input {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+        }
+        
+        /* Call to Action */
+        .cta {
+            background-image: linear-gradient(rgba(59, 81, 115, 0.8), rgba(59, 81, 115, 0.8)), url('https://images.unsplash.com/photo-1508420223351-d3eea27b023e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 0;
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .cta h2 {
+            color: var(--white);
+            margin-bottom: 25px;
+            font-size: 2.5rem;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-widget h4 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-widget h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+        
+        .footer-widget p {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .footer-service {
+            margin-bottom: 15px;
+        }
+        
+        .footer-service-day {
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        .subscribe-form {
+            display: flex;
+            margin-top: 15px;
+        }
+        
+        .subscribe-input {
+            flex-grow: 1;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            border: none;
+            padding: 10px 15px;
+        }
+        
+        .subscribe-btn {
+            background-color: var(--secondary);
+            color: var(--dark);
+            font-weight: 600;
+            border: none;
+            padding: 0 15px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .subscribe-btn:hover {
+            background-color: var(--accent);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .sermons-grid,
+            .series-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .sermons-intro-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 76px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0;
+                text-align: center;
+                border-bottom: 1px solid #eee;
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 15px 0;
+            }
+            
+            .sermons-intro-image {
+                margin-bottom: 30px;
+                order: -1;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .sermons-grid,
+            .series-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .subscribe-form {
+                flex-direction: column;
+            }
+            
+            .subscribe-input {
+                border-radius: var(--border-radius);
+                margin-bottom: 10px;
+            }
+            
+            .subscribe-btn {
+                border-radius: var(--border-radius);
+                padding: 10px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body> <header> <div class="container header-container"> <a href="#" class="logo">Grace<span>Community</span></a> <button class="mobile-menu-btn">☰</button> <nav> <ul> <li><a href="index. Html">Home</a></li> <li><a href="about. Html">About</a></li> <li><a href="sermons. Html">Sermons</a></li> <li><a href="events. Html">Events</a></li> <li><a href="ministries. Html">Ministries</a></li> <li><a href="contact. Html">Contact</a></li> </ul> </nav> </div> </header> <section class="page-header"> <div class="container"> <h1>Sermons</h1> <ul class="breadcrumb"> <li><a href="index. Html">Home</a></li> <li class="current">Sermons</li> </ul> </div> </section> <section class="sermons-intro"> <div class="container"> <div class="section-header"> <h2>Growing Through God's Word</h2> <p>Biblical teaching to help you grow in your faith</p> </div> <div class="sermons-intro-container"> <div class="sermons-intro-content"> <p>At Grace Community Church, we believe that the Bible is God's inspired Word and our ultimate authority for faith and life. Each sermon is designed to help you understand Scripture, apply it to your life, and grow in your relationship with God. </p> <p>Our sermons are available to stream or download, so you can listen anytime, anywhere. Whether you missed a Sunday service or want to revisit a message that impacted you, our sermon library is here to help you continue learning and growing. </p> <a href="#sermons-list" class="btn">Browse Recent Sermons</a> </div> <div class="sermons-intro-image"> <img src="https://images.unsplash.com/photo-1616836417940-f0f6c1c35120?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Pastor preaching"> </div> </div> </div> </section> <section class="sermons-list" id="sermons-list"> <div class="container"> <div class="section-header"> <h2>Recent Sermons</h2> <p>Listen to our latest messages</p> </div> <div class="filter-container"> <div class="filter-options"> <select class="filter-select"> <option value="">All Speakers</option> <option value="pastor-david">Pastor David Wilson</option> <option value="pastor-michael">Pastor Michael Brown</option> <option value="pastor-sarah">Pastor Sarah Thompson</option> </select> <select class="filter-select"> <option value="">All Series</option> <option value="faith-works">Faith That Works</option> <option value="kingdom-living">Kingdom Living</option> <option value="transformed">Transformed</option> <option value="hope-found">Hope Found</option> </select> <select class="filter-select"> <option value="">All Topics</option> <option value="faith">Faith</option> <option value="prayer">Prayer</option> <option value="relationships">Relationships</option> <option value="spiritual-growth">Spiritual Growth</option> </select> </div> <form class="search-form"> <input type="text" class="search-input" placeholder="Search sermons. . . "> <button type="submit" class="search-btn">Search</button> </form> </div> <div class="sermons-grid"> <div class="sermon-card"> <div class="sermon-image"> <img src="https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Faith That Works"> <a href="#" class="sermon-play">▶</a> </div> <div class="sermon-content"> <p class="sermon-date">June 11, 2025</p> <h3 class="sermon-title">Faith That Works: Living What We Believe</h3> <p class="sermon-speaker">Pastor David Wilson</p> <p class="sermon-description">Discover how genuine faith always expresses itself through action and how we can live out our beliefs in practical ways. </p> <div class="sermon-meta"> <span class="sermon-duration">45:23</span> <span class="sermon-series">Faith That Works</span> </div> <div class="sermon-actions"> <a href="#" class="sermon-action" title="Download">⬇️</a> <a href="#" class="sermon-action" title="Share">🔗</a> </div> </div> </div> <div class="sermon-card"> <div class="sermon-image"> <img src="https://images.unsplash.com/photo-1524117853209-a2fcab240719?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="The Power of Prayer"> <a href="#" class="sermon-play">▶</a> </div> <div class="sermon-content"> <p class="sermon-date">June 4, 2025</p> <h3 class="sermon-title">The Power of Prayer: Connecting with God</h3> <p class="sermon-speaker">Pastor Sarah Thompson</p> <p class="sermon-description">Learn how prayer deepens our relationship with God and how we can develop a more meaningful prayer life. </p> <div class="sermon-meta"> <span class="sermon-duration">38:45</span> <span class="sermon-series">Transformed</span> </div> <div class="sermon-actions"> <a href="#" class="sermon-action" title="Download">⬇️</a> <a href="#" class="sermon-action" title="Share">🔗</a> </div> </div> </div> <div class="sermon-card"> <div class="sermon-image"> <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Kingdom Living"> <a href="#" class="sermon-play">▶</a> </div> <div class="sermon-content"> <p class="sermon-date">May 28, 2025</p> <h3 class="sermon-title">Kingdom Living: The Beatitudes</h3> <p class="sermon-speaker">Pastor Michael Brown</p> <p class="sermon-description">Explore Jesus' radical teaching in the Beatitudes and discover what it means to live as citizens of God's kingdom. </p> <div class="sermon-meta"> <span class="sermon-duration">42:17</span> <span class="sermon-series">Kingdom Living</span> </div> <div class="sermon-actions"> <a href="#" class="sermon-action" title="Download">⬇️</a> <a href="#" class="sermon-action" title="Share">🔗</a> </div> </div> </div> <div class="sermon-card"> <div class="sermon-image"> <img src="https://images.unsplash.com/photo-1509021436665-8f07dbf5bf1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Finding Peace in the Storm"> <a href="#" class="sermon-play">▶</a> </div> <div class="sermon-content"> <p class="sermon-date">May 21, 2025</p> <h3 class="sermon-title">Finding Peace in the Storm</h3> <p class="sermon-speaker">Pastor David Wilson</p> <p class="sermon-description">Learn how to experience God's peace even in the midst of life's most challenging circumstances. </p> <div class="sermon-meta"> <span class="sermon-duration">40:52</span> <span class="sermon-series">Hope Found</span> </div> <div class="sermon-actions"> <a href="#" class="sermon-action" title="Download">⬇️</a> <a href="#" class="sermon-action" title="Share">🔗</a> </div> </div> </div> <div class="sermon-card"> <div class="sermon-image"> <img src="https://images.unsplash.com/photo-1533000759938-aa0ba70beceb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Living with Purpose"> <a href="#" class="sermon-play">▶</a> </div> <div class="sermon-content"> <p class="sermon-date">May 14, 2025</p> <h3 class="sermon-title">Living with Purpose: Discovering God's Plan</h3> <p class="sermon-speaker">Pastor Sarah Thompson</p> <p class="sermon-description">Discover how to identify and fulfill God's unique purpose for your life. </p> <div class="sermon-meta"> <span class="sermon-duration">39:14</span> <span class="sermon-series">Transformed</span> </div> <div class="sermon-actions"> <a href="#" class="sermon-action" title="Download">⬇️</a> <a href="#" class="sermon-action" title="Share">🔗</a> </div> </div> </div> <div class="sermon-card"> <div class="sermon-image"> <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="The Heart of Worship"> <a href="#" class="sermon-play">▶</a> </div> <div class="sermon-content"> <p class="sermon-date">May 7, 2025</p> <h3 class="sermon-title">The Heart of Worship</h3> <p class="sermon-speaker">Pastor Michael Brown</p> <p class="sermon-description">Explore what it means to worship God in spirit and truth, and how worship transforms our hearts. </p> <div class="sermon-meta"> <span class="sermon-duration">36:29</span> <span class="sermon-series">Kingdom Living</span> </div> <div class="sermon-actions"> <a href="#" class="sermon-action" title="Download">⬇️</a> <a href="#" class="sermon-action" title="Share">🔗</a> </div> </div> </div> </div> <div class="pagination"> <a href="#" class="page-link active">1</a> <a href="#" class="page-link">2</a> <a href="#" class="page-link">3</a> <a href="#" class="page-link">4</a> <a href="#" class="page-link">→</a> </div> </div> </section> <section class="featured-series"> <div class="container"> <div class="section-header"> <h2>Featured Series</h2> <p>Explore these multi-week teaching series</p> </div> <div class="series-grid"> <div class="series-card"> <div class="series-image"> <img src="https://images.unsplash.com/photo-1618842676088-c4d48a6a7c9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Faith That Works"> </div> <div class="series-content"> <h3 class="series-title">Faith That Works</h3> <p class="series-meta">6 Parts | Pastor David Wilson</p> <a href="#" class="btn btn-outline">View Series</a> </div> </div> <div class="series-card"> <div class="series-image"> <img src="https://images.unsplash.com/photo-1529973625058-a665431328fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Kingdom Living"> </div> <div class="series-content"> <h3 class="series-title">Kingdom Living</h3> <p class="series-meta">8 Parts | Pastor Michael Brown</p> <a href="#" class="btn btn-outline">View Series</a> </div> </div> <div class="series-card"> <div class="series-image"> <img src="https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Transformed"> </div> <div class="series-content"> <h3 class="series-title">Transformed</h3> <p class="series-meta">7 Parts | Pastor Sarah Thompson</p> <a href="#" class="btn btn-outline">View Series</a> </div> </div> <div class="series-card"> <div class="series-image"> <img src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Hope Found"> </div> <div class="series-content"> <h3 class="series-title">Hope Found</h3> <p class="series-meta">5 Parts | Pastor David Wilson</p> <a href="#" class="btn btn-outline">View Series</a> </div> </div> </div> </div> </section> <section class="subscribe"> <div class="container"> <div class="subscribe-container"> <h2>Subscribe to Our Sermon Podcast</h2> <p>Never miss a message! Subscribe to receive our weekly sermons directly to your favorite podcast app. </p> <div class="subscribe-links" style="display: flex; justify-content: center; gap: 20px; margin: 30px 0;"> <a href="#" class="btn btn-secondary">Apple Podcasts</a> <a href="#" class="btn btn-secondary">Spotify</a> <a href="#" class="btn btn-secondary">Google Podcasts</a> </div> <p>Or enter your email to receive weekly sermon updates:</p> <form class="subscribe-form"> <input type="email" class="subscribe-input" placeholder="Your Email Address"> <button type="submit" class="btn">Subscribe</button> </form> </div> </div> </section> <section class="cta"> <div class="container"> <h2>Join Us This Sunday</h2> <p>We would love to have you join us for worship. Our services are at 9:00 AM and 11:00 AM every Sunday. </p> <div class="cta-buttons"> <a href="#" class="btn btn-secondary">Plan Your Visit</a> <a href="#" class="btn btn-outline">Contact Us</a> </div> </div> </section> <footer> <div class="container"> <div class="footer-container"> <div class="footer-widget"> <h4>About Us</h4> <p>Grace Community Church is a welcoming community of believers dedicated to worship, fellowship, and service. </p> <p>Our mission is to love God, love people, and make disciples in our community and around the world. </p> </div> <div class="footer-widget"> <h4>Quick Links</h4> <ul class="footer-links"> <li><a href="about. Html">About Us</a></li> <li><a href="sermons. Html">Sermons</a></li> <li><a href="events. Html">Events</a></li> <li><a href="ministries. Html">Ministries</a></li> <li><a href="giving. Html">Online Giving</a></li> <li><a href="contact. Html">Contact Us</a></li> </ul> </div> <div class="footer-widget"> <h4>Service Times</h4> <div class="footer-service"> <p class="footer-service-day">Sunday</p> <p>9:00 AM & 11:00 AM</p> </div> <div class="footer-service"> <p class="footer-service-day">Sunday Evening</p> <p>6:00 PM</p> </div> <div class="footer-service"> <p class="footer-service-day">Wednesday</p> <p>7:00 PM</p> </div> </div> <div class="footer-widget"> <h4>Newsletter</h4> <p>Subscribe to our newsletter to receive updates and announcements. </p> <form class="subscribe-form"> <input type="email" class="subscribe-input" placeholder="Your Email"> <button type="submit" class="subscribe-btn">Subscribe</button> </form> </div> </div> <div class="footer-bottom"> <p>&copy; 2025 Grace Community Church. All Rights Reserved. </p> </div> </div> </footer> <script> // Mobile Menu Toggle const mobileMenuBtn = document. QuerySelector('. Mobile-menu-btn'); const navMenu = document. QuerySelector('nav ul'); mobileMenuBtn. AddEventListener('click', () => { navMenu. ClassList. Toggle('active'); }); // Close mobile menu when clicking outside document. AddEventListener('click', (e) => { if (!e. target. Closest('nav') && !e. target. Closest('. Mobile-menu-btn')) { navMenu. ClassList. Remove('active'); } }); </script> <!-- Universal Form Handler --> <script> window. FORM_HANDLER_CONFIG = { apiEndpoint: 'https://genmysite.com/api/forms/submit', websiteId: null, recaptchaSiteKey: null, debug: false }; </script> <script src="/js/form-handler. Js" defer></script>
+</body>
+</html>

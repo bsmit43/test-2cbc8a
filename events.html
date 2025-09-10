@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1. 0"> <title>Events & Calendar - Grace Community Church</title> <meta name="description" content="Join us for upcoming events at Grace Community Church. View our calendar of services, special programs, community outreach, and fellowship opportunities. "> <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lora:wght@400;500;600&display=swap" rel="stylesheet"> <style>
+        :root {
+            --primary: #3b5173;
+            --primary-dark: #2a3b54;
+            --secondary: #e5b167;
+            --accent: #d4a04f;
+            --light: #f5f5f5;
+            --dark: #333;
+            --text: #555;
+            --white: #fff;
+            --max-width: 1200px;
+            --border-radius: 8px;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Lora', serif;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--accent);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: var(--dark);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--accent);
+            color: var(--dark);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-family: 'Lora', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            font-weight: 500;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background-image: linear-gradient(rgba(59, 81, 115, 0.8), rgba(59, 81, 115, 0.8)), url('https://images.unsplash.com/photo-1617575521317-d2974f3b56d2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            text-align: center;
+            padding: 120px 0 80px;
+            margin-top: 76px;
+        }
+        
+        .page-header h1 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .breadcrumbs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+        
+        .breadcrumbs a {
+            color: var(--secondary);
+        }
+        
+        .breadcrumbs span {
+            color: var(--white);
+        }
+        
+        /* Events Calendar Section */
+        .events-calendar {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h2 {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        .calendar-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .month-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .month-selector h3 {
+            margin-bottom: 0;
+        }
+        
+        .month-nav {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+        
+        .view-toggle {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .view-btn {
+            background-color: var(--white);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 8px 15px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .view-btn.active {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        /* Calendar Grid */
+        .calendar-grid {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+        
+        .calendar-header {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 15px 0;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .calendar-body {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-auto-rows: minmax(120px, auto);
+        }
+        
+        .calendar-day {
+            border: 1px solid #eee;
+            padding: 10px;
+            min-height: 120px;
+            position: relative;
+        }
+        
+        .day-number {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .calendar-day.inactive .day-number {
+            color: #ccc;
+        }
+        
+        .calendar-day.today {
+            background-color: rgba(229, 177, 103, 0.1);
+        }
+        
+        .calendar-day.today .day-number {
+            color: var(--secondary);
+            font-weight: 700;
+        }
+        
+        .day-event {
+            background-color: var(--primary);
+            color: var(--white);
+            font-size: 0.8rem;
+            padding: 3px 8px;
+            border-radius: 3px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .day-event.special {
+            background-color: var(--secondary);
+            color: var(--dark);
+        }
+        
+        /* Upcoming Events Section */
+        .upcoming-events {
+            padding: 80px 0;
+        }
+        
+        .event-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .filter-btn {
+            background: none;
+            border: none;
+            padding: 8px 15px;
+            font-weight: 500;
+            color: var(--text);
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .filter-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            color: var(--primary);
+        }
+        
+        .filter-btn:hover::after,
+        .filter-btn.active::after {
+            width: 80%;
+        }
+        
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .event-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .event-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .event-card:hover .event-image img {
+            transform: scale(1.1);
+        }
+        
+        .event-content {
+            padding: 20px;
+        }
+        
+        .event-date {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--dark);
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        
+        .event-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .event-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+        
+        .event-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .event-description {
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+        
+        /* Featured Event */
+        .featured-event {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .featured-event-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .featured-event-image {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .featured-event-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .featured-event-content h3 {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .featured-event-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .featured-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .meta-icon {
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+        
+        .meta-text strong {
+            display: block;
+            color: var(--primary-dark);
+        }
+        
+        /* Call to Action */
+        .cta {
+            background-image: linear-gradient(rgba(59, 81, 115, 0.8), rgba(59, 81, 115, 0.8)), url('https://images.unsplash.com/photo-1508420223351-d3eea27b023e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 0;
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .cta h2 {
+            color: var(--white);
+            margin-bottom: 25px;
+            font-size: 2.5rem;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-widget h4 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-widget h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+        
+        .footer-widget p {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .footer-service {
+            margin-bottom: 15px;
+        }
+        
+        .footer-service-day {
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        .subscribe-form {
+            display: flex;
+            margin-top: 15px;
+        }
+        
+        .subscribe-input {
+            flex-grow: 1;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            border: none;
+            padding: 10px 15px;
+        }
+        
+        .subscribe-btn {
+            background-color: var(--secondary);
+            color: var(--dark);
+            font-weight: 600;
+            border: none;
+            padding: 0 15px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .subscribe-btn:hover {
+            background-color: var(--accent);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .events-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .calendar-body {
+                grid-template-columns: repeat(1, 1fr);
+            }
+            
+            .calendar-header {
+                display: none;
+            }
+            
+            .featured-event-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 76px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0;
+                text-align: center;
+                border-bottom: 1px solid #eee;
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 15px 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .event-filters {
+                flex-wrap: wrap;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body> <header> <div class="container header-container"> <a href="#" class="logo">Grace<span>Community</span></a> <button class="mobile-menu-btn">☰</button> <nav> <ul> <li><a href="index. Html">Home</a></li> <li><a href="about. Html">About</a></li> <li><a href="sermons. Html">Sermons</a></li> <li><a href="events. Html">Events</a></li> <li><a href="ministries. Html">Ministries</a></li> <li><a href="contact. Html">Contact</a></li> </ul> </nav> </div> </header> <section class="page-header"> <div class="container"> <div class="breadcrumbs"> <a href="index. Html">Home</a> <span>/</span> <span>Events</span> </div> <h1>Church Events & Calendar</h1> <p>Join us for worship, fellowship, and community outreach</p> </div> </section> <section class="events-calendar"> <div class="container"> <div class="section-header"> <h2>Church Calendar</h2> <p>View our upcoming services and events</p> </div> <div class="calendar-controls"> <div class="month-selector"> <button class="month-nav">&#8249;</button> <h3>July 2025</h3> <button class="month-nav">&#8250;</button> </div> <div class="view-toggle"> <button class="view-btn active">Month</button> <button class="view-btn">Week</button> <button class="view-btn">List</button> </div> </div> <div class="calendar-grid"> <div class="calendar-header"> <div>Sunday</div> <div>Monday</div> <div>Tuesday</div> <div>Wednesday</div> <div>Thursday</div> <div>Friday</div> <div>Saturday</div> </div> <div class="calendar-body"> <div class="calendar-day inactive"> <div class="day-number">30</div> </div> <div class="calendar-day"> <div class="day-number">1</div> <div class="day-event">Prayer Meeting - 7 PM</div> </div> <div class="calendar-day"> <div class="day-number">2</div> <div class="day-event">Women's Bible Study - 10 AM</div> </div> <div class="calendar-day"> <div class="day-number">3</div> <div class="day-event">Youth Group - 6 PM</div> </div> <div class="calendar-day"> <div class="day-number">4</div> <div class="day-event">Choir Practice - 7 PM</div> </div> <div class="calendar-day"> <div class="day-number">5</div> <div class="day-event">Community Dinner - 6:30 PM</div> </div> <div class="calendar-day"> <div class="day-number">6</div> <div class="day-event">Community Service - 9 AM</div> </div> <div class="calendar-day"> <div class="day-number">7</div> <div class="day-event special">Sunday Services - 9 & 11 AM</div> <div class="day-event special">Evening Service - 6 PM</div> </div> <div class="calendar-day"> <div class="day-number">8</div> <div class="day-event">Men's Bible Study - 7 PM</div> </div> <div class="calendar-day"> <div class="day-number">9</div> <div class="day-event">Women's Prayer Group - 10 AM</div> </div> <div class="calendar-day"> <div class="day-number">10</div> <div class="day-event">Youth Group - 6 PM</div> </div> <div class="calendar-day"> <div class="day-number">11</div> <div class="day-event">Choir Practice - 7 PM</div> </div> <div class="calendar-day today"> <div class="day-number">12</div> <div class="day-event">Community Dinner - 6:30 PM</div> </div> <div class="calendar-day"> <div class="day-number">13</div> <div class="day-event">Community Service - 9 AM</div> </div> <div class="calendar-day"> <div class="day-number">14</div> <div class="day-event special">Sunday Services - 9 & 11 AM</div> <div class="day-event special">Evening Service - 6 PM</div> </div> <div class="calendar-day"> <div class="day-number">15</div> <div class="day-event special">Annual Church Picnic - 12 PM</div> </div> <div class="calendar-day"> <div class="day-number">16</div> <div class="day-event">Women's Bible Study - 10 AM</div> </div> <div class="calendar-day"> <div class="day-number">17</div> <div class="day-event">Youth Group - 6 PM</div> </div> <div class="calendar-day"> <div class="day-number">18</div> <div class="day-event">Choir Practice - 7 PM</div> </div> <div class="calendar-day"> <div class="day-number">19</div> <div class="day-event">Community Dinner - 6:30 PM</div> </div> <div class="calendar-day"> <div class="day-number">20</div> <div class="day-event">Community Service - 9 AM</div> </div> <div class="calendar-day"> <div class="day-number">21</div> <div class="day-event special">Sunday Services - 9 & 11 AM</div> <div class="day-event special">Evening Service - 6 PM</div> </div> <div class="calendar-day"> <div class="day-number">22</div> <div class="day-event">Men's Bible Study - 7 PM</div> </div> <div class="calendar-day"> <div class="day-number">23</div> <div class="day-event">Women's Prayer Group - 10 AM</div> </div> <div class="calendar-day"> <div class="day-number">24</div> <div class="day-event special">Vacation Bible School - 9 AM</div> <div class="day-event">Youth Group - 6 PM</div> </div> <div class="calendar-day"> <div class="day-number">25</div> <div class="day-event special">Vacation Bible School - 9 AM</div> <div class="day-event">Choir Practice - 7 PM</div> </div> <div class="calendar-day"> <div class="day-number">26</div> <div class="day-event special">Vacation Bible School - 9 AM</div> <div class="day-event">Community Dinner - 6:30 PM</div> </div> <div class="calendar-day"> <div class="day-number">27</div> <div class="day-event special">Vacation Bible School - 9 AM</div> <div class="day-event">Community Service - 9 AM</div> </div> <div class="calendar-day"> <div class="day-number">28</div> <div class="day-event special">Sunday Services - 9 & 11 AM</div> <div class="day-event special">Vacation Bible School Closing - 11 AM</div> <div class="day-event special">Evening Service - 6 PM</div> </div> <div class="calendar-day"> <div class="day-number">29</div> <div class="day-event">Men's Bible Study - 7 PM</div> </div> <div class="calendar-day"> <div class="day-number">30</div> <div class="day-event">Women's Bible Study - 10 AM</div> </div> <div class="calendar-day"> <div class="day-number">31</div> <div class="day-event">Youth Group - 6 PM</div> </div> <div class="calendar-day inactive"> <div class="day-number">1</div> </div> <div class="calendar-day inactive"> <div class="day-number">2</div> </div> <div class="calendar-day inactive"> <div class="day-number">3</div> </div> </div> </div> <div class="calendar-footer text-center"> <a href="#" class="btn btn-outline">Download Calendar (PDF)</a> <a href="#" class="btn btn-outline">Add to Your Calendar</a> </div> </div> </section> <section class="upcoming-events"> <div class="container"> <div class="section-header"> <h2>Upcoming Events</h2> <p>Join us for these special events and activities</p> </div> <div class="event-filters"> <button class="filter-btn active">All Events</button> <button class="filter-btn">Worship Services</button> <button class="filter-btn">Children & Youth</button> <button class="filter-btn">Community Outreach</button> <button class="filter-btn">Fellowship</button> </div> <div class="events-grid"> <div class="event-card"> <div class="event-image"> <img src="https://images.unsplash.com/photo-1603072388338-e587f1181b20?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Church Picnic"> </div> <div class="event-content"> <span class="event-date">July 15</span> <h3 class="event-title">Annual Church Picnic</h3> <div class="event-meta"> <div class="event-meta-item"> <span>🕒</span> <span>12:00 PM</span> </div> <div class="event-meta-item"> <span>📍</span> <span>Riverside Park</span> </div> </div> <p class="event-description">Join us for food, games, and fellowship at our annual church picnic. Bring a side dish to share!</p> <a href="#" class="btn btn-outline">Learn More</a> </div> </div> <div class="event-card"> <div class="event-image"> <img src="https://images.unsplash.com/photo-1613963931023-5dc59437c8a6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Vacation Bible School"> </div> <div class="event-content"> <span class="event-date">July 24-28</span> <h3 class="event-title">Vacation Bible School</h3> <div class="event-meta"> <div class="event-meta-item"> <span>🕒</span> <span>9:00 AM - 12:00 PM</span> </div> <div class="event-meta-item"> <span>📍</span> <span>Church Campus</span> </div> </div> <p class="event-description">A week of fun, learning, and adventure for children ages 5-12. Register your children today!</p> <a href="#" class="btn btn-outline">Register Now</a> </div> </div> <div class="event-card"> <div class="event-image"> <img src="https://images.unsplash.com/photo-1507838153414-b4b713384a76?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Worship Night"> </div> <div class="event-content"> <span class="event-date">August 5</span> <h3 class="event-title">Worship Night</h3> <div class="event-meta"> <div class="event-meta-item"> <span>🕒</span> <span>7:00 PM</span> </div> <div class="event-meta-item"> <span>📍</span> <span>Main Sanctuary</span> </div> </div> <p class="event-description">An evening of worship, prayer, and spiritual renewal. Come experience God's presence with us. </p> <a href="#" class="btn btn-outline">Learn More</a> </div> </div> <div class="event-card"> <div class="event-image"> <img src="https://images.unsplash.com/photo-1525026198548-4baa812f1183?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Community Service Day"> </div> <div class="event-content"> <span class="event-date">August 12</span> <h3 class="event-title">Community Service Day</h3> <div class="event-meta"> <div class="event-meta-item"> <span>🕒</span> <span>8:00 AM - 2:00 PM</span> </div> <div class="event-meta-item"> <span>📍</span> <span>Various Locations</span> </div> </div> <p class="event-description">Join us as we serve our community through various service projects. All ages and abilities welcome!</p> <a href="#" class="btn btn-outline">Sign Up</a> </div> </div> <div class="event-card"> <div class="event-image"> <img src="https://images.unsplash.com/photo-1523920290228-4f321a939b02?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Youth Lock-In"> </div> <div class="event-content"> <span class="event-date">August 18</span> <h3 class="event-title">Youth Lock-In</h3> <div class="event-meta"> <div class="event-meta-item"> <span>🕒</span> <span>7:00 PM - 7:00 AM</span> </div> <div class="event-meta-item"> <span>📍</span> <span>Youth Center</span> </div> </div> <p class="event-description">An overnight event for youth with games, worship, Bible study, and more. Permission slip required. </p> <a href="#" class="btn btn-outline">Register</a> </div> </div> <div class="event-card"> <div class="event-image"> <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Senior Luncheon"> </div> <div class="event-content"> <span class="event-date">August 23</span> <h3 class="event-title">Senior Fellowship Luncheon</h3> <div class="event-meta"> <div class="event-meta-item"> <span>🕒</span> <span>12:00 PM</span> </div> <div class="event-meta-item"> <span>📍</span> <span>Fellowship Hall</span> </div> </div> <p class="event-description">A special luncheon for our senior adults with food, fellowship, and a guest speaker. </p> <a href="#" class="btn btn-outline">RSVP</a> </div> </div> </div> </div> </section> <section class="featured-event"> <div class="container"> <div class="section-header"> <h2>Featured Event</h2> <p>Don't miss this special opportunity</p> </div> <div class="featured-event-container"> <div class="featured-event-image"> <img src="https://images.unsplash.com/photo-1530525555937-ca6308b292b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Family Retreat Weekend"> </div> <div class="featured-event-content"> <h3>Annual Family Retreat Weekend</h3> <div class="featured-event-meta"> <div class="featured-meta-item"> <div class="meta-icon">📅</div> <div class="meta-text"> <strong>Date</strong> <span>September 15-17, 2025</span> </div> </div> <div class="featured-meta-item"> <div class="meta-icon">🕒</div> <div class="meta-text"> <strong>Time</strong> <span>Friday 5 PM - Sunday 2 PM</span> </div> </div> <div class="featured-meta-item"> <div class="meta-icon">📍</div> <div class="meta-text"> <strong>Location</strong> <span>Pine Ridge Retreat Center</span> </div> </div> <div class="featured-meta-item"> <div class="meta-icon">💲</div> <div class="meta-text"> <strong>Cost</strong> <span>$175 per adult, $75 per child</span> </div> </div> </div> <p>Join us for a weekend of spiritual growth, family bonding, and outdoor adventure. Our annual Family Retreat Weekend includes worship sessions, breakout groups for all ages, family activities, delicious meals, and plenty of free time to enjoy the beautiful surroundings. </p> <p>This year's theme is "Rooted: Growing Together in Faith. " Our guest speaker will be Dr. James Wilson, author and family ministry expert. </p> <div class="featured-event-buttons"> <a href="#" class="btn">Register Now</a> <a href="#" class="btn btn-outline">Learn More</a> </div> </div> </div> </div> </section> <section class="cta"> <div class="container"> <h2>Get Involved in Church Events</h2> <p>Whether you're looking for worship, fellowship, service, or spiritual growth, there's something for everyone at Grace Community Church. Join us for an upcoming event and become part of our church family. </p> <div class="cta-buttons"> <a href="#" class="btn btn-secondary">Subscribe to Calendar</a> <a href="#" class="btn btn-outline">Contact Event Coordinator</a> </div> </div> </section> <footer> <div class="container"> <div class="footer-container"> <div class="footer-widget"> <h4>About Us</h4> <p>Grace Community Church is a welcoming community of believers dedicated to worship, fellowship, and service. </p> <p>Our mission is to love God, love people, and make disciples in our community and around the world. </p> </div> <div class="footer-widget"> <h4>Quick Links</h4> <ul class="footer-links"> <li><a href="about. Html">About Us</a></li> <li><a href="sermons. Html">Sermons</a></li> <li><a href="events. Html">Events</a></li> <li><a href="ministries. Html">Ministries</a></li> <li><a href="giving. Html">Online Giving</a></li> <li><a href="contact. Html">Contact Us</a></li> </ul> </div> <div class="footer-widget"> <h4>Service Times</h4> <div class="footer-service"> <p class="footer-service-day">Sunday</p> <p>9:00 AM & 11:00 AM</p> </div> <div class="footer-service"> <p class="footer-service-day">Sunday Evening</p> <p>6:00 PM</p> </div> <div class="footer-service"> <p class="footer-service-day">Wednesday</p> <p>7:00 PM</p> </div> </div> <div class="footer-widget"> <h4>Newsletter</h4> <p>Subscribe to our newsletter to receive updates and announcements. </p> <form class="subscribe-form"> <input type="email" class="subscribe-input" placeholder="Your Email"> <button type="submit" class="subscribe-btn">Subscribe</button> </form> </div> </div> <div class="footer-bottom"> <p>&copy; 2025 Grace Community Church. All Rights Reserved. </p> </div> </div> </footer> <script> // Mobile Menu Toggle const mobileMenuBtn = document. QuerySelector('. Mobile-menu-btn'); const navMenu = document. QuerySelector('nav ul'); mobileMenuBtn. AddEventListener('click', () => { navMenu. ClassList. Toggle('active'); }); // Close mobile menu when clicking outside document. AddEventListener('click', (e) => { if (!e. target. Closest('nav') && !e. target. Closest('. Mobile-menu-btn')) { navMenu. ClassList. Remove('active'); } }); // Event Filter Buttons const filterBtns = document. QuerySelectorAll('. Filter-btn'); filterBtns. ForEach(btn => { btn. AddEventListener('click', () => { filterBtns. ForEach(b => b. ClassList. Remove('active')); btn. ClassList. Add('active'); // Here you would typically filter the events based on the selected category }); }); </script> <!-- Universal Form Handler --> <script> window. FORM_HANDLER_CONFIG = { apiEndpoint: 'https://genmysite.com/api/forms/submit', websiteId: null, recaptchaSiteKey: null, debug: false }; </script> <script src="/js/form-handler. Js" defer></script>
+</body>
+</html>
